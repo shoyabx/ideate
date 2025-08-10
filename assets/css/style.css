@@ -1,3 +1,7 @@
+/* Ensure main sections are visually separated */
+.card, .grid {
+  margin-top: 32px !important;
+}
 :root{
   --bg-gradient: linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%);
   --glass-bg: rgba(255,255,255,0.55);
