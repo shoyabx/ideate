@@ -3,12 +3,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Md Shoyab Portfolio</title>
   <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+/* Responsive base styles */
+.container {
+  padding: 10px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.grid.side-by-side {
+  display: flex;
+  gap: 20px;
+}
+
+.projects-card, .skills-card {
+  flex: 1;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .avatar img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+  }
+  .grid.side-by-side {
+    flex-direction: column;
+  }
+  .projects-card, .skills-card {
+    width: 100%;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  iframe {
+    height: 70vh !important;
+  }
+}
+</style>
 </head>
 <body>
   <div class="container">
 
     <!-- Profile Header -->
-    <div class="profile-card" style="display:flex; flex-direction:row; gap:20px;">
+    <div class="profile-card">
       <div class="avatar">
 	<img src="assets/images/profile.jpg" alt="Md Shoyab">
       </div>
@@ -257,4 +307,4 @@ function confirmLeave(e, url) {
 }
 </script>
 </body>
-</html> 
+</html>
