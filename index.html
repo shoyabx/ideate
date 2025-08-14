@@ -16,24 +16,12 @@
         <h1>Md Shoyab</h1>
         <p class="headline">ERP Expert • System Implementation • Procure to Pay • Data Pipelines (ETLs) • Agile Project Management</p>
         <div class="actions">
-  <a href="Document/Md_Shoyab_Resume_ERP_Analyst.pdf" class="btn">Resume</a>
-  <a href="mailto:md.shoyab@gmail.com" class="btn">Email</a>
-  <a href="https://www.linkedin.com/in/mshoyab/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-  <a href="https://github.io/shoyabx" class="btn" target="_blank" rel="noopener">Github</a>
+          <a href="assets/images/Md_Shoyab_Resume_ERP_Analyst.pdf" class="btn" title="Wanna know more? Lets sneak into my resume." data-tooltip="Wanna know more? Lets sneak into my resume." onclick="openResume(event)">Resume</a>
+          <a href="#" class="btn" title="Have questions? I would be happy to answer." data-tooltip="Have questions? I would be happy to answer." onclick="openEmailDialog(event)">Email</a>
+          <a href="https://www.linkedin.com/in/mshoyab/" class="btn" title="Let's have a chat." data-tooltip="Let's have a chat." onclick="confirmLeave(event, this.href)">LinkedIn</a>
+          <a href="https://github.com/shoyabx" class="btn" title="I am learning, yet we can explore this together." data-tooltip="I am learning, yet we can explore this together." onclick="confirmLeave(event, this.href)">Github</a>
         </div>
       </div>
-      <div class="qualifications">
-        <h2></h2>
-          <li><strong>MBA in Operations Management</strong><br>
-            <span class="meta">Indira Gandhi National Open University, Delhi</span>
-          </li>
-          <li><strong>B.Tech in Electrical & Electronics Engineering</strong><br>
-            <span class="meta">Dr. APJ Abdul Kalam Technical University, Uttar Pradesh</span>
-          </li>
-          <li><strong>Diploma in Instrumentation & Control Engineering</strong><br>
-            <span class="meta">Ambedkar Institute of Technology, Delhi</span>
-          </li>
-    </div>
     </div>
 
     <!-- About -->
@@ -42,8 +30,8 @@
       <p>Experienced ERP Analyst with expertise in Oracle EBS R12, data migration, compliance projects, and agile delivery. Proven track record in cross-functional coordination, process optimization, and regulatory compliance implementation.</p>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid">
+    <!-- Projects and Skills Side by Side -->
+    <div class="grid side-by-side">
       <div class="card projects-card">
         <h2>Projects</h2>
         <div class="project-list">
@@ -65,22 +53,130 @@
         <h2>Skills</h2>
         <ul>
           <li><strong>ERP Tools:</strong><br>
-            SAP Concur, Oracle R12 EBS, Ariba, AskGSM, Infosys Bot</li>
+            Payment Disbursement Portal (in-house application), SAP Concur, Oracle EBS R12, Ariba-On-Demand, AskGSM (Infosys Bot)</li>
+          <br>
           <li><strong>Data & Reporting:</strong><br>
-            Excel (Advanced), Power BI, Tableau, ETL, Pivot Tables</li>
+            Excel (Advanced), Power BI, Tableau, ETLs, Pivot Tables, Macros</li>
+          <br>
           <li><strong>Project Tools:</strong><br>
-            JIRA, ServiceNow, Confluence, Microsoft Visio</li>
+            Atlassian Jira, ServiceNow, Atlassian Confluence, Microsoft Visio, Murale</li>
+          <br>
           <li><strong>Soft Skills:</strong><br>
-            Stakeholder Management, Documentation, Change Management</li>
+            Stakeholder Management, Documentation, Change Management, Project Management, Training Sessions</li>
         </ul>
       </div>
     </div>
 
+<div class="card qualifications-card">
+  <h2>Education</h2>
+  <strong>MBA</strong><br>
+      <span class="meta" style="font-size: 1em;">Operations Management</span><br>
+      <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Indira Gandhi National Open University, New Delhi</span>
+    <br><br>
+</span><strong>B.TECH</strong><br>
+      <span class="meta" style="font-size: 1em;">Electrical & Electronics Engineering</span><br>
+      <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Dr. APJ Abdul Kalam Technical University, Uttar Pradesh</span>
+    <br><br>
+  <strong>DIPLOMA</strong><br>
+      <span class="meta" style="font-size: 1em;">Instrumentation & Control Engineering</span><br>
+      <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Ambedkar Institute of Technology, Delhi</span>
+    </li>
+  </ul>
+</div>
+
     <!-- Footer -->
     <footer>
-      <p>© 2025 Md Shoyab · Hosted on GitHub Pages</p>
+      <p>© 2025 Md Shoyab · Hosted on GitHub</p>
     </footer>
 
   </div>
+
+  <!-- Email Dialog -->
+  <div id="emailDialog" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%); background:#fff; border-radius:10px; box-shadow:0 4px 30px rgba(0,0,0,0.2); z-index:10000; padding:30px; min-width:320px; max-width:90vw;">
+    <h3>Contact Me</h3>
+    <form id="contactForm">
+      <label for="user_name">Your Name:</label><br>
+      <input type="text" id="user_name" name="user_name" required style="width:100%;margin-bottom:10px;"><br>
+      <label for="user_email">Your Email:</label><br>
+      <input type="email" id="user_email" name="user_email" required style="width:100%;margin-bottom:10px;"><br>
+      <label for="subject">Subject:</label><br>
+      <input type="text" id="subject" name="subject" required style="width:100%;margin-bottom:10px;"><br>
+      <label for="message">Message:</label><br>
+      <textarea id="message" name="message" required style="width:100%;margin-bottom:10px;"></textarea><br>
+      <button type="submit" style="margin-right:10px;">Send Message</button>
+      <button type="button" onclick="closeEmailDialog()">Cancel</button>
+      <div id="emailStatus" style="margin-top:10px; color:green;"></div>
+    </form>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+emailjs.init('YOUR_PUBLIC_KEY'); // user_id
+
+function openEmailDialog(e) {
+  e.preventDefault();
+  document.getElementById('emailDialog').style.display = 'block';
+}
+
+function closeEmailDialog() {
+  document.getElementById('emailDialog').style.display = 'none';
+  document.getElementById('emailStatus').innerText = '';
+  document.getElementById('contactForm').reset();
+}
+
+document.getElementById('contactForm').onsubmit = function(e) {
+  e.preventDefault();
+  emailjs.send('shoyabx', 'template_sto9hl4', {
+    user_name: document.getElementById('user_name').value,
+    user_email: document.getElementById('user_email').value,
+    subject: document.getElementById('subject').value,
+    message: document.getElementById('message').value
+  })
+  .then(function(response) {
+    document.getElementById('emailStatus').innerText = 'Message sent successfully!';
+    setTimeout(closeEmailDialog, 2000);
+  }, function(error) {
+    document.getElementById('emailStatus').innerText = 'Failed to send message. Please try again.';
+  });
+};
+
+function openResume(e) {
+  e.preventDefault();
+  const url = e.currentTarget.getAttribute('href');
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.style.width = '100%';
+  iframe.style.height = '90vh';
+  const dialog = document.createElement('div');
+  dialog.style.position = 'fixed';
+  dialog.style.top = '5%';
+  dialog.style.left = '5%';
+  dialog.style.width = '90%';
+  dialog.style.height = '90%';
+  dialog.style.background = 'rgba(255, 255, 255, 0.2)';
+  dialog.style.backdropFilter = 'blur(10px)';
+  dialog.style.borderRadius = '15px';
+  dialog.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+  dialog.style.zIndex = '9999';
+  dialog.style.padding = '10px';
+  dialog.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+  dialog.appendChild(iframe);
+  const closeBtn = document.createElement('button');
+  closeBtn.innerText = 'Close';
+  closeBtn.style.position = 'absolute';
+  closeBtn.style.top = '10px';
+  closeBtn.style.right = '10px';
+  closeBtn.onclick = () => document.body.removeChild(dialog);
+  dialog.appendChild(closeBtn);
+  document.body.appendChild(dialog);
+}
+
+function confirmLeave(e, url) {
+  e.preventDefault();
+  if (confirm("You are about to leave this site. Continue?")) {
+    window.open(url, '_blank');
+  }
+}
+</script>
 </body>
 </html>
