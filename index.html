@@ -92,7 +92,7 @@
   </div>
 
   <!-- Email Dialog -->
-  <div id="emailDialog" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%); background:#fff; border-radius:10px; box-shadow:0 4px 30px rgba(0,0,0,0.2); z-index:10000; padding:30px; min-width:320px; max-width:90vw;">
+  <div id="emailDialog" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%); background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); z-index:10000; padding:30px; min-width:320px; max-width:90vw;">
     <h3>Contact Me</h3>
     <form id="contactForm">
       <label for="user_name">Your Name:</label><br>
@@ -103,14 +103,86 @@
       <input type="text" id="subject" name="subject" required style="width:100%;margin-bottom:10px;"><br>
       <label for="message">Message:</label><br>
       <textarea id="message" name="message" required style="width:100%;margin-bottom:10px;"></textarea><br>
-      <button type="submit" style="margin-right:10px;">Send Message</button>
-      <button type="button" onclick="closeEmailDialog()">Cancel</button>
+      <button type="submit" class="btn" style="margin-right:10px;">Send Message</button>
+      <button type="button" class="btn" onclick="closeEmailDialog()">Cancel</button>
       <div id="emailStatus" style="margin-top:10px; color:green;"></div>
     </form>
   </div>
 
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 <script>
+emailjs.init('Q4kcEG6fLMjBDPpAj'); // user_id
+
+function openEmailDialog(e) {
+  e.preventDefault();
+  document.getElementById('emailDialog').style.display = 'block';
+}
+
+function closeEmailDialog() {
+  document.getElementById('emailDialog').style.display = 'none';
+  document.getElementById('emailStatus').innerText = '';
+  document.getElementById('contactForm').reset();
+}
+
+document.getElementById('contactForm').onsubmit = function(e) {
+  e.preventDefault();
+
+  emailjs.send('shoyabx', 'template_sto9hl4', {
+    user_name: document.getElementById('user_name').value,
+    user_email: document.getElementById('user_email').value, // recipient's email
+    subject: document.getElementById('subject').value,
+    message: document.getElementById('message').value
+  })
+  .then(function() {
+    document.getElementById('emailStatus').style.color = 'green';
+    document.getElementById('emailStatus').innerText = 'Message sent successfully to your email!';
+    setTimeout(closeEmailDialog, 2000);
+  })
+  .catch(function(error) {
+    document.getElementById('emailStatus').style.color = 'red';
+    document.getElementById('emailStatus').innerText = 'Failed to send message. Please try again.';
+    console.error('EmailJS error:', error);
+  });
+};
+
+function openResume(e) {
+  e.preventDefault();
+  const url = e.currentTarget.getAttribute('href');
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.style.width = '100%';
+  iframe.style.height = '90vh';
+  const dialog = document.createElement('div');
+  dialog.style.position = 'fixed';
+  dialog.style.top = '5%';
+  dialog.style.left = '5%';
+  dialog.style.width = '90%';
+  dialog.style.height = '90%';
+  dialog.style.background = 'rgba(255, 255, 255, 0.2)';
+  dialog.style.backdropFilter = 'blur(10px)';
+  dialog.style.borderRadius = '15px';
+  dialog.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+  dialog.style.zIndex = '9999';
+  dialog.style.padding = '10px';
+  dialog.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+  dialog.appendChild(iframe);
+  const closeBtn = document.createElement('button');
+  closeBtn.innerText = 'Close';
+  closeBtn.style.position = 'absolute';
+  closeBtn.style.top = '10px';
+  closeBtn.style.right = '10px';
+  closeBtn.onclick = () => document.body.removeChild(dialog);
+  dialog.appendChild(closeBtn);
+  document.body.appendChild(dialog);
+}
+
+function confirmLeave(e, url) {
+  e.preventDefault();
+  if (confirm("You are about to leave this site. Continue?")) {
+    window.open(url, '_blank');
+  }
+}
+</script>
 emailjs.init('YOUR_PUBLIC_KEY'); // user_id
 
 function openEmailDialog(e) {
