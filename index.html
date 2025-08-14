@@ -26,30 +26,65 @@
 
 /* Mobile view adjustments */
 @media (max-width: 768px) {
+  .container {
+    padding: 5px;
+  }
   .profile-card {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    padding: 10px 5px;
   }
   .avatar img {
-    max-width: 150px;
+    max-width: 120px;
     height: auto;
     border-radius: 50%;
+    margin-bottom: 10px;
   }
-  .grid.side-by-side {
-    flex-direction: column;
+  .profile-info h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
   }
-  .projects-card, .skills-card {
-    width: 100%;
+  .profile-info .headline {
+    font-size: 0.9em;
+    margin-bottom: 15px;
   }
   .actions {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
+  }
+  .actions .btn {
+    font-size: 0.85em;
+    padding: 8px 14px;
+    margin: 0;
+  }
+  .grid.side-by-side {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .projects-card, .skills-card {
+    width: 100%;
+    overflow: visible;
+    padding: 10px 5px;
+  }
+  .qualifications-card {
+    width: 100%;
+    padding: 10px 5px;
+    box-sizing: border-box;
+  }
+  .qualifications-card h2 {
+    font-size: 1.3em;
+  }
+  .qualifications-card strong {
+    font-size: 1em;
+  }
+  .qualifications-card .meta {
+    font-size: 0.8em;
   }
   iframe {
-    height: 70vh !important;
+    height: 60vh !important;
   }
 }
 </style>
