@@ -1,0 +1,52 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Trash
+.Trashes
+.Trash
+*.swp
+*.swo
+
+# VS Code settings
+.vscode/
+.history/
+
+# Python environments (if any)
+.venv/
+__pycache__/
+
+# Node.js (if you ever use npm/yarn)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Local folders you don’t want on GitHub
+Desktop/
+Downloads/
+Movies/
+Music/
+Pictures/
+Public/
+Library/
+Applications/
+My Folder/
+My Tableau Repository/
+Project Ideate/
+
+# Database / Secrets
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+*.bak
+*.env
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
