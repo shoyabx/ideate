@@ -1,65 +1,495 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Md Shoyab Portfolio</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+/* Global body background */
+body {
+  background-color: #f0f2f5;
+}
+
+/* Responsive base styles */
+.container {
+  padding: 10px;
+}
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.grid.side-by-side {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  align-items: stretch;
+}
+
+.projects-card, .skills-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.certifications-card, .qualifications-card {
+  flex: 1;
+  align-self: stretch;
+  min-height: 320px;
+  vertical-align: baseline;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 5px;
+  }
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px 5px;
+  }
+  .avatar img {
+    max-width: 120px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  .profile-info h1 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+  .profile-info .headline {
+    font-size: 0.9em;
+    margin-bottom: 15px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .actions .btn {
+    font-size: 0.85em;
+    padding: 8px 14px;
+    margin: 0;
+  }
+  .grid.side-by-side {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .projects-card, .skills-card {
+    width: 100%;
+    overflow: visible;
+    padding: 10px 5px;
+  }
+  .qualifications-card {
+    width: 100%;
+    padding: 10px 5px;
+    box-sizing: border-box;
+  }
+  .qualifications-card h2 {
+    font-size: 1.3em;
+  }
+  .qualifications-card strong {
+    font-size: 1em;
+  }
+  .qualifications-card .meta {
+    font-size: 0.8em;
+  }
+  iframe {
+    height: 60vh !important;
+  }
+}
+</style>
+</head>
 <body>
   <div class="container">
 
     <!-- Profile Header -->
     <div class="profile-card">
       <div class="avatar">
-        <img src="assets/images/profile.jpg" alt="Md Shoyab">
+	<img src="assets/images/profile.jpg" alt="Md Shoyab">
       </div>
       <div class="profile-info">
         <h1>Md Shoyab</h1>
         <p class="headline">ERP Expert • System Implementation • Procure to Pay • Data Pipelines (ETLs) • Agile Project Management</p>
         <div class="actions">
-          <a href="Document/Md_Shoyab_Resume_ERP_Analyst.pdf" class="btn">Download Resume</a>
-          <a href="mailto:md.shoyab@gmail.com" class="simple-link">Email</a>
-          <a href="https://topmate.io/mshoyab" class="simple-link">Book Appointment</a>
+          <a href="assets/images/Md_Shoyab_Resume_ERP_Analyst.pdf" class="btn" title="Wanna know more? Lets sneak into my resume." data-tooltip="Wanna know more? Lets sneak into my resume." onclick="openResume(event)">Resume</a>
+          <a href="#" class="btn" title="Have questions? I would be happy to answer." data-tooltip="Have questions? I would be happy to answer." onclick="openEmailDialog(event)">Email</a>
+          <a href="https://www.linkedin.com/in/mshoyab/" class="btn" title="Let's have a chat." data-tooltip="Let's have a chat." onclick="confirmLeave(event, this.href)">LinkedIn</a>
+          <a href="https://github.com/shoyabx" class="btn" title="I am learning, yet we can explore this together." data-tooltip="I am learning, yet we can explore this together." onclick="confirmLeave(event, this.href)">Github</a>
         </div>
       </div>
     </div>
 
     <!-- About -->
-    <div class="card" style="margin-top:20px;">
+    <div class="card" style="margin-top:20px; margin-bottom:20px;">
       <h2>About</h2>
       <p>Experienced ERP Analyst with expertise in Oracle EBS R12, data migration, compliance projects, and agile delivery. Proven track record in cross-functional coordination, process optimization, and regulatory compliance implementation.</p>
     </div>
 
-    <!-- Projects Grid -->
-    <div class="grid">
-      <div class="card">
+    <!-- Projects and Skills Side by Side -->
+    <div class="grid side-by-side">
+      <div class="card projects-card">
         <h2>Projects</h2>
-        <div class="project-list" style="display:flex;flex-direction:column;gap:10px;">
-          <a href="Project/oracle-idl.html" class="project-item">
-            <span>Oracle IDL — India Data Localization (Amex)</span>
-            <span class="meta">Data migration & compliance</span>
+        <div class="project-list">
+          <a href="Project/project.athena.html" class="project-item">
+            <span>Project Athena</span>
+            <span class="meta">Technology Upliftment</span>
+          </a>
+          <a href="Project/project-ideate.html" class="project-item">
+            <span>Project Ideate</span>
+            <span class="meta">Personal Dossier</span>
           </a>
           <a href="Project/dr-implementation.html" class="project-item">
-            <span>Payment Portal — DR Instance Implementation</span>
-            <span class="meta">BCP readiness</span>
+            <span>DR Implementation</span>
+            <span class="meta">BCP Readiness</span>
           </a>
-          <a href="Project/project-athena.html" class="project-item">
-            <span>Project Athena — Payment Portal Modernisation</span>
-            <span class="meta">Cloud migration</span>
+          <a href="Project/oracle-idl.html" class="project-item">
+            <span>Oracle IDL</span>
+            <span class="meta">Data Migration & Compliance</span>
           </a>
         </div>
       </div>
-
-      <div class="card">
+      <div class="card skills-card">
         <h2>Skills</h2>
         <ul>
-          <li>ERP Systems (Oracle EBS R12)</li>
-          <li>Data Migration & Compliance</li>
-          <li>Agile & PI Planning</li>
-          <li>SQL & ETL Pipelines</li>
-          <li>Business Process Optimization</li>
+          <li><strong>ERP Tools:</strong><br>
+            Payment Disbursement Portal (in-house application), SAP Concur, Oracle EBS R12, Ariba-On-Demand, AskGSM (Infosys Bot)</li>
+          <br>
+          <li><strong>Data & Reporting:</strong><br>
+            Excel (Advanced), Power BI, Tableau, ETLs, Pivot Tables, Macros</li>
+          <br>
+          <li><strong>Project Tools:</strong><br>
+            Atlassian Jira, ServiceNow, Atlassian Confluence, Microsoft Visio, Murale</li>
+          <br>
+          <li><strong>Soft Skills:</strong><br>
+            Stakeholder Management, Documentation, Change Management, Project Management, Training Sessions</li>
         </ul>
       </div>
     </div>
 
+<div class="grid side-by-side">
+  <div class="card certifications-card">
+    <h2>Certifications</h2>
+    <ul style="list-style: none; padding-left: 0; font-size: 0.95em;">
+      <li>
+        <strong>Atlassian Agile Project Management Professional Certificate</strong>
+        <a href="https://www.linkedin.com/learning/certificates/daa6c53bbbd241a17016bf0f342ffb30e36d9d38c04de0acc7de0451bd6b5deb?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" target="_blank" style="text-decoration: none; color: inherit;">
+          <strong>↗</strong>
+        </a><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Issue By <strong>Atlassian</strong> On <strong>Jan 2024</strong></span>
+      </li><br>
+            <li>
+              <strong>Learning Power BI</strong>
+        <a href="https://www.linkedin.com/learning/certificates/3079bff971486c152425adcd0a0ca711a77212e86a334ed9c13c412d57e7c63f?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" target="_blank" style="text-decoration: none; color: inherit;">
+          <strong>↗</strong>
+        </a><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Issue By <strong>LinkedIn</strong> On <strong>Jan 2024</strong></span>
+      </li><br>
+            <li>
+        <strong>Scrum: The Basics</strong>
+        <a href="https://www.linkedin.com/learning/certificates/1c22ff61c0eb13817bc5363ec52e2a0a177ac61808bf272d76fcbbe62f05ffe5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" target="_blank" style="text-decoration: none; color: inherit;">
+          <strong>↗</strong>
+        </a><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Issue By <strong>Project Management Institute</strong> On <strong>Jan 2024</strong></span>
+      </li><br>
+            <li>
+  <strong>Data Analytics: Dashboard vs. Data Data Stories</strong>
+  <a href="https://www.linkedin.com/learning/certificates/45e3f675e6b43ef843ee95f20645275d786d2b100051adc8d509962396a1c397?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" 
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>LinkedIn</strong> on <strong>Aug 2023</strong>
+  </span>
+</li><br>
+            <li>
+        <a target="_blank" style="text-decoration: none; color: inherit;">
+          <strong>Harvard Leadership Edge: Making Sound Decisions Quickly – Boost Your Decision-Making</strong>
+        </a><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Issue By <strong>Harvard Business Impact Enterprise</strong> On <strong>Aug 2023</strong></span>
+      </li><br>
+            <li>
+  <strong>How to Present and Stay on Point</strong>
+  <a href="https://www.linkedin.com/learning/certificates/65cb4d99460a19d8aa3dbd850daae3cd3a7c96a714f0811e404b82e17e7e0b59?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" 
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>LinkedIn</strong> on <strong>Jul 2023</strong>
+  </span>
+</li>
+<br><li><strong>Cybersecurity and Cloud Computing</strong>
+  <a href="https://www.linkedin.com/learning/certificates/a755c3acb81e100e93cdfffa169df9c0922bc54820d1f6005a87bf786e333dd5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" 
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>IIBA</strong> on <strong>Jun 2023</strong>
+  </span>
+</li>
+<br><li><strong>LembdaTest Automation Professional Certificate</strong>
+  <a href="https://www.linkedin.com/learning/certificates/b102ac6de8ba132dc0ac450dde763ab00521d6a7992709dd4af38d27558ecf83?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D" 
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>LambdaTest</strong> on <strong>Jan 2023</strong>
+  </span>
+</li>
+<br><li><strong>Explore a Career in SQL Development</strong>
+  <a href="https://www.linkedin.com/learning/certificates/c4c283b3e8018fa4ad98bae1728eccaf91200dcd2fe9c01e101bd9d4df9b34c6?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D"
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>LinkedIn</strong> on <strong>Dec 2022</strong>
+  </span>
+</li>
+<br><li><strong>How to Develop Your Career Plan</strong>
+  <a href="https://www.linkedin.com/learning/certificates/309bc627a6560f063807a733cf51ae14251728c617dfdbe4e7ac6446f4daa3f5?trk=share_certificate&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BD0XtnRZqTQ6KG9n7W9%2B0HQ%3D%3D"
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>Project Management Institute</strong> on <strong>Dec 2022</strong>
+  </span>
+</li>
+<br><li><strong>Learning Data Analytics</strong>
+  <a href="https://www.linkedin.com/learning/learning-data-analytics-2?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BtOogS4NKQ9qGZebXwCdYng%3D%3D"
+     target="_blank" 
+     style="margin-left: 5px; text-decoration: none; color: inherit;">
+    <strong>↗</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>NASBA</strong> on <strong>Aug 2021</strong>
+  </span>
+</li>
+<br><li><strong>Six Sigma White Belt Certifications</strong>
+  </a><br>
+  <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">
+    Issued By <strong>Six Sigma Online; Aveta Business InstituteSix</strong> on <strong>Jun 2021</strong>
+  </span>
+</li>
+
+
+
+
+
+
+
+
+    </ul>
+  </div>
+
+  <div class="card qualifications-card">
+    <h2>Education</h2>
+    <strong>MBA</strong><br>
+        <span class="meta" style="font-size: 1em;">Operations Management</span><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Indira Gandhi National Open University, New Delhi</span>
+      <br><br>
+  </span><strong>B.TECH</strong><br>
+        <span class="meta" style="font-size: 1em;">Electrical & Electronics Engineering</span><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Dr. APJ Abdul Kalam Technical University, Uttar Pradesh</span>
+      <br><br>
+    <strong>DIPLOMA</strong><br>
+        <span class="meta" style="font-size: 1em;">Instrumentation & Control Engineering</span><br>
+        <span class="meta" style="color: grey; font-size: 0.80em; font-style: italic;">Ambedkar Institute of Technology, Delhi</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
     <!-- Footer -->
     <footer>
-      <p>© 2025 Md Shoyab · Hosted on GitHub Pages</p>
+      <p>© 2025 Md Shoyab · Hosted on GitHub</p>
     </footer>
 
   </div>
+
+<script>
+function openEmailDialog(e) {
+  e.preventDefault();
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100vw';
+  overlay.style.height = '100vh';
+  overlay.style.background = 'rgba(0,0,0,0.25)';
+  overlay.style.zIndex = '9999';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+
+  // Create dialog
+  const dialog = document.createElement('div');
+  dialog.style.background = 'rgba(255, 255, 255, 0.2)';
+  dialog.style.backdropFilter = 'blur(10px)';
+  dialog.style.borderRadius = '16px';
+  dialog.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+  dialog.style.padding = '32px 24px 24px 24px';
+  dialog.style.border = '1px solid rgba(255,255,255,0.3)';
+  dialog.style.minWidth = '320px';
+  dialog.style.maxWidth = '90vw';
+  dialog.style.textAlign = 'center';
+  dialog.style.position = 'relative';
+
+  // Dialog message
+  const message = document.createElement('div');
+  message.style.fontSize = '1.2em';
+  message.style.marginBottom = '28px';
+  message.style.color = '#222';
+  message.innerText = 'Do you want to send an email?';
+  dialog.appendChild(message);
+
+  // Buttons container
+  const btns = document.createElement('div');
+  btns.style.display = 'flex';
+  btns.style.justifyContent = 'center';
+  btns.style.gap = '18px';
+
+  // Yes button
+  const yesBtn = document.createElement('button');
+  yesBtn.innerText = 'Yes';
+  yesBtn.className = 'btn';
+  yesBtn.onclick = function() {
+    document.body.removeChild(overlay);
+    window.location.href = "mailto:md.shoyab@gmail.com";
+  };
+  btns.appendChild(yesBtn);
+
+  // Cancel button
+  const cancelBtn = document.createElement('button');
+  cancelBtn.innerText = 'Cancel';
+  cancelBtn.className = 'btn';
+  cancelBtn.onclick = function() {
+    document.body.removeChild(overlay);
+  };
+  btns.appendChild(cancelBtn);
+
+  dialog.appendChild(btns);
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+}
+
+function openResume(e) {
+  e.preventDefault();
+  const url = e.currentTarget.getAttribute('href');
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.style.width = '100%';
+  iframe.style.height = '90vh';
+  const dialog = document.createElement('div');
+  dialog.style.position = 'fixed';
+  dialog.style.top = '5%';
+  dialog.style.left = '5%';
+  dialog.style.width = '90%';
+  dialog.style.height = '90%';
+  dialog.style.background = 'rgba(255, 255, 255, 0.2)';
+  dialog.style.backdropFilter = 'blur(10px)';
+  dialog.style.borderRadius = '15px';
+  dialog.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+  dialog.style.zIndex = '9999';
+  dialog.style.padding = '30px';
+  dialog.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+  dialog.appendChild(iframe);
+  const closeBtn = document.createElement('button');
+  closeBtn.innerText = 'Close';
+  closeBtn.className = 'btn';
+  closeBtn.style.position = 'absolute';
+  closeBtn.style.top = '10px';
+  closeBtn.style.right = '10px';
+  closeBtn.onclick = () => document.body.removeChild(dialog);
+  dialog.appendChild(closeBtn);
+  document.body.appendChild(dialog);
+}
+
+function confirmLeave(e, url) {
+  e.preventDefault();
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100vw';
+  overlay.style.height = '100vh';
+  overlay.style.background = 'rgba(0,0,0,0.25)';
+  overlay.style.zIndex = '9999';
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'center';
+  overlay.style.justifyContent = 'center';
+
+  // Create dialog
+  const dialog = document.createElement('div');
+  dialog.style.background = 'rgba(255, 255, 255, 0.2)';
+  dialog.style.backdropFilter = 'blur(10px)';
+  dialog.style.borderRadius = '16px';
+  dialog.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+  dialog.style.padding = '32px 24px 24px 24px';
+  dialog.style.border = '1px solid rgba(255,255,255,0.3)';
+  dialog.style.minWidth = '320px';
+  dialog.style.maxWidth = '90vw';
+  dialog.style.textAlign = 'center';
+  dialog.style.position = 'relative';
+
+  // Dialog message
+  const message = document.createElement('div');
+  message.style.fontSize = '1.2em';
+  message.style.marginBottom = '28px';
+  message.style.color = '#222';
+  message.innerText = 'You are about to leave this site. Continue?';
+  dialog.appendChild(message);
+
+  // Buttons container
+  const btns = document.createElement('div');
+  btns.style.display = 'flex';
+  btns.style.justifyContent = 'center';
+  btns.style.gap = '18px';
+
+  // Yes button
+  const yesBtn = document.createElement('button');
+  yesBtn.innerText = 'Yes';
+  yesBtn.className = 'btn';
+  yesBtn.onclick = function() {
+    document.body.removeChild(overlay);
+    window.open(url, '_blank');
+  };
+  btns.appendChild(yesBtn);
+
+  // Cancel button
+  const cancelBtn = document.createElement('button');
+  cancelBtn.innerText = 'Cancel';
+  cancelBtn.className = 'btn';
+  cancelBtn.onclick = function() {
+    document.body.removeChild(overlay);
+  };
+  btns.appendChild(cancelBtn);
+
+  dialog.appendChild(btns);
+  overlay.appendChild(dialog);
+  document.body.appendChild(overlay);
+}
+</script>
 </body>
 </html>
